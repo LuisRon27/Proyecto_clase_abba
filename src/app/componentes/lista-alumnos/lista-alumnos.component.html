@@ -1,0 +1,57 @@
+
+<div class="row mt-3">
+    <div >
+        <h3>LISTADO DE ALUMNOS</h3>
+    </div>
+    <div class="col lg 6">
+        <!-- Agrego un boton a la derecha con las clases de bootstrap -->
+        <button class="btn btn-primary float end" routerLink="/agregar">Nuevo Alumno</button>
+    </div>
+</div>
+<!-- podemos condicionar si mostramos o no la tabla -->
+<table *ngIf="lista_alumno.length > 0" class="table table-hover mt-3">
+        <thead>
+            <tr>
+               <td>Id</td>
+                <td>Apellido</td>
+                <td>Nombre</td>
+                <td>Direccion</td>
+                <td>Telefono</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- AGREGADO -->
+            <!-- Agregamos la variable indicealumno para guardar la posicion en el array -->
+            <!--<tr *ngFor="let pepe of lista_alumno; let indicealumno= index"></tr>-->
+            <tr *ngFor="let pepe of lista_alumno">
+                <!-- HAcemos que la primer columna sea de acceso a los datos a los cuales queremos -->
+                <!-- mostrar en este caso estamos pasando el parametro 1 como constante -->
+                <td>{{pepe.idalumno}}</td>                
+                <td>{{pepe.apellido}}</td>
+                <td>{{pepe.nombre}}</td>
+                <td>{{pepe.direccion}}</td>
+                <td>{{pepe.telefono}}</td>
+                <td style="width: 10%;">
+                     <!-- AGREGADO -->
+                     <!-- PARA MOSTRAR EL Id DEL ALUMNO PARA LAS EDICIONES -->
+                    <!--<button class="btn btn-primary btn-sm float-end" [routerLink]='["/editar/" + pepe.idalumno]' >Editar</button> -->
+                    <button class="btn btn-primary btn-sm float-end" [routerLink] ="['/editaralumno' , pepe.idalumno]">Editar</button>
+                </td>
+                <td style="width: 10%;">
+                    <!-- AGREGADO -->
+                    <!-- para hacer la comunicacion bidireccional -->
+                    <!-- agregamos la funcion para pasar el parametro a la clase(click)="remover(indicealumno)" -->
+                    <!--<button class="btn btn-danger btn-sm float-end" (click)="remover(pepe.id)">Eliminar</button>-->
+                    <button class="btn btn-danger btn-sm float-end" (click)="borraalumno(pepe)" >Eliminar</button>
+                </td>
+                
+            </tr>
+        </tbody>
+</table>
+<!-- podemos condicionar si mostramos mensaje de que no hay registros -->
+<div *ngIf="lista_alumno.length==0" class="row mt-5">
+    <h5>No existen alumnos para mostrar</h5>
+</div>
+

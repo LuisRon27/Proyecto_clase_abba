@@ -1,0 +1,49 @@
+<h3 mt-3>Agregar Alumnos</h3>
+<!-- Creo un formulario para los datos -->
+<!-- Agregamos el formgroup con las funciones que definimos en el  -->
+<!-- agrego-modifico.component.ts  -->
+<form [formGroup]="editaralumno"(ngSubmit)="editar()">
+
+      <!-- desde bootstrap traemos el codigo que esta en FORMS / INPUT GROUP / MULTIPLE INPUTS -->
+      <div class="input-group">
+        <span class="input-group-text">Apellido y Nombre</span>
+        <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre">
+         <!-- Para Agregar Validaciones -->
+         <span *ngIf="editaralumno.get('nombre')?.invalid && editaralumno.get('nombre')?.touched" class="text-danger">
+          Debe Ingresar el Nombre
+        </span>
+        <input formControlName="apellido" type="text" class="form-control" id="apellido" placeholder="Apellido">
+         <!-- Para Agregar Validaciones -->
+         <span *ngIf="editaralumno.get('apellido')?.invalid && editaralumno.get('apellido')?.touched" class="text-danger">
+          Debe Ingresar el Apellido
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <label for="direccion" class="form-label">Direccion</label>
+        <input formControlName="direccion" type="text" class="form-control" id="direccion" placeholder="Direccion">
+        <!-- Para Agregar Validaciones -->
+        <span *ngIf="editaralumno.get('direccion')?.invalid && editaralumno.get('direccion')?.touched" class="text-danger">
+          Debe Ingresar el Direccion
+        </span>
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input formControlName="telefono" type="text" class="form-control" id="telefono" placeholder="Telefono">
+        <!-- Para Agregar Validaciones -->
+        <span *ngIf="editaralumno.get('telefono')?.invalid && editaralumno.get('telefono')?.touched" class="text-danger">
+          Debe Ingresar el Telefono
+        </span>
+      </div>
+    <!-- Agrego un campo del tipo string largo o memo para que pueda ingresar texto multilinea -->
+      <!--<div class="mb-3">-->
+       <!-- <label for="observaciones" class="form-label">Observaciones</label>-->
+       <!-- <textarea formControlName="observaciones" class="form-control" id="observaciones" rows="8"></textarea>-->
+     <!-- </div>-->
+    <!-- Agrego los botones de accion necesarios -->
+    <!-- Le agregamos margen para que se de el espacio entre botones -->
+    <!-- Le agregamos type="submit" para que envie los datos atraves del formulario -->
+    <!-- Le agregamos la porpiedad DISABLED para controlar que se habilite cuando se ingresaron los campos -->
+      <button type="submit" [disabled]="editaralumno.invalid" class="btn btn-primary float-end" style="margin-left: 10px">Grabar</button>
+      <button type="button" class="btn btn-secondary float-end"  routerLink="/">Cancelar</button>
+</form>
